@@ -12,6 +12,15 @@ app.use(express.json())
 app.use(cors())
 
 // DB config
+const uri = "mongodb://localhost:27017/poddin-api"
+mongoose.connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
+
+mongoose.connection.once('open', ()=>{
+    console.log('DB Connected')
+})
 
 // api routes
 app.get('/', (req, res) => { res.status(200).send("hello world")});
